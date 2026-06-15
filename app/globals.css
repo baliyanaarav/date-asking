@@ -473,6 +473,7 @@ button:disabled {
 }
 
 .date-input,
+.time-choice-group,
 .creator-panel label {
   display: grid;
   gap: 9px;

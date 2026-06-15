@@ -235,17 +235,20 @@ export default function DateQuest({ initialName }: { initialName: string }) {
                     value={date}
                   />
                 </label>
-                <div className="time-picker" aria-label="Time choices">
-                  {timeSlots.map((slot) => (
-                    <button
-                      className={time === slot ? "selected" : ""}
-                      key={slot}
-                      onClick={() => setTime(slot)}
-                    >
-                      <Clock size={17} />
-                      {slot}
-                    </button>
-                  ))}
+                <div className="time-choice-group">
+                  <span>Time</span>
+                  <div className="time-picker" aria-label="Time choices">
+                    {timeSlots.map((slot) => (
+                      <button
+                        className={time === slot ? "selected" : ""}
+                        key={slot}
+                        onClick={() => setTime(slot)}
+                      >
+                        <Clock size={17} />
+                        {slot}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </QuestStep>
