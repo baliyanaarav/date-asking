@@ -128,9 +128,10 @@ export default function DateQuest({ initialName }: { initialName: string }) {
 
   const todayValue = useMemo(() => getTodayValue(), []);
   const currentIndex = steps.indexOf(step);
+  const heartCount = currentIndex + 1;
   const heroTitle = recipientName
-    ? `${recipientName}, will you go on a date with me?`
-    : "Will you go on a date with me?";
+    ? `${recipientName}, want to go on a date?`
+    : "Want to go on a date?";
   const finalTitle = recipientName
     ? `So, ${recipientName}, is it a date?`
     : "So, is it a date?";
@@ -200,6 +201,16 @@ export default function DateQuest({ initialName }: { initialName: string }) {
               nice.
             </span>
           </div>
+          <div className="quest-hud" aria-label="Quest score">
+            <span>
+              <Sparkles size={15} />
+              Level {currentIndex + 1}/4
+            </span>
+            <span>
+              <Heart size={15} />
+              {heartCount} {heartCount === 1 ? "heart" : "hearts"}
+            </span>
+          </div>
           <div className="progress-track" aria-label="Quest progress">
             {steps.map((item, index) => (
               <button
@@ -208,7 +219,9 @@ export default function DateQuest({ initialName }: { initialName: string }) {
                 key={item}
                 onClick={() => setStep(item)}
               >
-                <span>{index + 1}</span>
+                <span aria-hidden="true">
+                  {index <= currentIndex ? <Heart fill="currentColor" size={13} /> : index + 1}
+                </span>
                 {stepLabels[item]}
               </button>
             ))}
@@ -220,9 +233,9 @@ export default function DateQuest({ initialName }: { initialName: string }) {
             <QuestStep
               eyebrow="First clue"
               icon={Sparkles}
-              title="What kind of evening should this feel like?"
-              note="Pick whatever feels most you. The goal is soft, easy, and worth smiling about."
-              action="Lock the vibe"
+              title="Choose the vibe for us."
+              note="Pick whatever feels most you. Soft, easy, and worth smiling about."
+              action="Collect vibe"
               onNext={nextStep}
             >
               <ChoiceGrid choices={moods} selected={mood} onSelect={setMood} />
@@ -233,9 +246,9 @@ export default function DateQuest({ initialName }: { initialName: string }) {
             <QuestStep
               eyebrow="Second clue"
               icon={Utensils}
-              title="Choose the place and menu energy."
+              title="Pick the plan."
               note={`${senderName} will handle the plan around what you choose.`}
-              action="Choose date plan"
+              action="Pick the plan"
               onBack={() => setStep("mood")}
               onNext={nextStep}
             >
@@ -247,9 +260,9 @@ export default function DateQuest({ initialName }: { initialName: string }) {
             <QuestStep
               eyebrow="Third clue"
               icon={Clock}
-              title="Pick a day and a time that feels right."
-              note="Choose a time that feels comfortable. The date can stay sweet and unhurried."
-              action="Ask the question"
+              title="Choose a day and time."
+              note="Whatever feels comfortable. The date can stay sweet and unhurried."
+              action="Open final clue"
               onBack={() => setStep("place")}
               onNext={nextStep}
             >
@@ -398,7 +411,7 @@ function ChoiceGrid({
   selected: string;
 }) {
   return (
-    <div className="choice-grid">
+    <div className={choices.length === 3 ? "choice-grid triple" : "choice-grid"}>
       {choices.map((choice) => {
         const Icon = choice.icon;
         return (
