@@ -483,6 +483,7 @@ button:disabled {
 }
 
 .date-input input,
+.custom-time-input input,
 .creator-panel input {
   width: 100%;
   min-height: 54px;
@@ -492,6 +493,25 @@ button:disabled {
   background: rgba(255, 255, 255, 0.09);
   color: var(--ink);
   padding: 0 14px;
+}
+
+.custom-time-input {
+  display: grid;
+  gap: 8px;
+  margin-top: 2px;
+  color: var(--teal);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.custom-time-input input {
+  color-scheme: dark;
+}
+
+.custom-time-input.selected input {
+  border-color: rgba(139, 224, 199, 0.82);
+  background: rgba(139, 224, 199, 0.16);
+  color: var(--teal);
 }
 
 .time-picker {

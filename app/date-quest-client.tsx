@@ -103,6 +103,18 @@ function formatDate(value: string) {
   }).format(date);
 }
 
+function formatTimeValue(value: string) {
+  const [hourText, minuteText] = value.split(":");
+  const hours = Number(hourText);
+  const minutes = Number(minuteText);
+
+  if (!Number.isFinite(hours) || !Number.isFinite(minutes)) return "";
+
+  const suffix = hours >= 12 ? "PM" : "AM";
+  const hour12 = hours % 12 || 12;
+  return `${hour12}:${String(minutes).padStart(2, "0")} ${suffix}`;
+}
+
 function choiceTitle(choices: Choice[], id: string) {
   return choices.find((choice) => choice.id === id)?.title ?? "";
 }
@@ -114,6 +126,7 @@ export default function DateQuest({ initialName }: { initialName: string }) {
   const [place, setPlace] = useState(places[0].id);
   const [date, setDate] = useState(getTodayValue);
   const [time, setTime] = useState(timeSlots[1]);
+  const [customTime, setCustomTime] = useState("");
   const [noPosition, setNoPosition] = useState(noButtonSpots[1]);
   const [copyState, setCopyState] = useState<"idle" | "copied">("idle");
   const [showConfetti, setShowConfetti] = useState(false);
@@ -168,6 +181,17 @@ export default function DateQuest({ initialName }: { initialName: string }) {
   function nextStep() {
     const next = steps[Math.min(currentIndex + 1, steps.length - 1)];
     setStep(next);
+  }
+
+  function selectPresetTime(slot: string) {
+    setCustomTime("");
+    setTime(slot);
+  }
+
+  function selectCustomTime(value: string) {
+    setCustomTime(value);
+    const formattedTime = formatTimeValue(value);
+    if (formattedTime) setTime(formattedTime);
   }
 
   async function celebrateYes() {
@@ -240,15 +264,24 @@ export default function DateQuest({ initialName }: { initialName: string }) {
                   <div className="time-picker" aria-label="Time choices">
                     {timeSlots.map((slot) => (
                       <button
-                        className={time === slot ? "selected" : ""}
+                        className={!customTime && time === slot ? "selected" : ""}
                         key={slot}
-                        onClick={() => setTime(slot)}
+                        onClick={() => selectPresetTime(slot)}
                       >
                         <Clock size={17} />
                         {slot}
                       </button>
                     ))}
                   </div>
+                  <label className={customTime ? "custom-time-input selected" : "custom-time-input"}>
+                    <span>Custom time</span>
+                    <input
+                      aria-label="Custom time"
+                      onChange={(event) => selectCustomTime(event.target.value)}
+                      type="time"
+                      value={customTime}
+                    />
+                  </label>
                 </div>
               </div>
             </QuestStep>
