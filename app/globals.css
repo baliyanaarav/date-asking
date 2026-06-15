@@ -753,11 +753,24 @@ button:disabled {
 
 @media (max-width: 720px) {
   .date-app {
+    display: grid;
+    align-items: safe center;
+    min-height: 100svh;
+    overflow-y: auto;
     padding: 14px;
   }
 
-  .quest-shell {
+  .quest-shell,
+  .creator-shell {
+    min-height: calc(100svh - 28px);
+    align-content: safe center;
+    align-items: stretch;
     gap: 14px;
+  }
+
+  .story-panel,
+  .creator-copy {
+    padding-top: 0;
   }
 
   h1 {

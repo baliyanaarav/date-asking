@@ -274,9 +274,9 @@ export default function DateQuest({ initialName }: { initialName: string }) {
                     ))}
                   </div>
                   <label className={customTime ? "custom-time-input selected" : "custom-time-input"}>
-                    <span>Custom time</span>
+                    <span>Your time</span>
                     <input
-                      aria-label="Custom time"
+                      aria-label="Your time"
                       onChange={(event) => selectCustomTime(event.target.value)}
                       type="time"
                       value={customTime}
