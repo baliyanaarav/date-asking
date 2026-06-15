@@ -4,16 +4,13 @@ import {
   CalendarDays,
   Check,
   Clock,
-  Coffee,
   Copy,
-  Gift,
   Heart,
   MapPin,
   MessageCircleHeart,
   Music2,
   PartyPopper,
   Send,
-  ShieldCheck,
   Sparkles,
   Utensils,
 } from "lucide-react";
@@ -195,25 +192,12 @@ export default function DateQuest({ initialName }: { initialName: string }) {
         <aside className="story-panel">
           <p className="eyebrow">A tiny quest from {senderName}</p>
           <h1>{heroTitle}</h1>
-          <p>
-            Pick the vibe, choose the plan, set the time, and unlock the final
-            answer.
-          </p>
-          <div className="warm-details" aria-label="Date comforts">
+          <p>Pick what feels cute. I will handle the plan.</p>
+          <div className="personal-note" aria-label="Personal note">
+            <Heart size={18} />
             <span>
-              <ShieldCheck size={17} />
-              <strong>Comfort first</strong>
-              <small>No pressure, just a sweet plan.</small>
-            </span>
-            <span>
-              <Coffee size={17} />
-              <strong>Dessert ready</strong>
-              <small>Something cozy is definitely included.</small>
-            </span>
-            <span>
-              <Gift size={17} />
-              <strong>Handled nicely</strong>
-              <small>{senderName} takes care of the little details.</small>
+              I made this little date quest just for you. Choose whatever feels
+              nice.
             </span>
           </div>
           <div className="progress-track" aria-label="Quest progress">
@@ -300,7 +284,7 @@ export default function DateQuest({ initialName }: { initialName: string }) {
               eyebrow="Final unlock"
               icon={MessageCircleHeart}
               title={finalTitle}
-              note="Quest accepted means Aarav handles snacks, timing, and making it feel easy."
+              note="If you say yes, I will keep it easy and comfortable."
               onBack={() => setStep("date")}
             >
               <div className="summary-strip">
@@ -311,7 +295,7 @@ export default function DateQuest({ initialName }: { initialName: string }) {
               </div>
 
               <div className="answer-arena" onPointerMove={moveNoButton}>
-                <span className="answer-spark">Only one correct answer survived the quest</span>
+                <span className="answer-spark">Only if it feels right</span>
                 <button className="yes-button" onClick={celebrateYes}>
                   <PartyPopper size={20} />
                   Yes, it is a date
@@ -339,10 +323,7 @@ export default function DateQuest({ initialName }: { initialName: string }) {
 
               <div className="final-love-note">
                 <Heart size={18} />
-                <p>
-                  I will keep it cozy: good timing, easy conversation, and one
-                  date that feels like it was planned properly.
-                </p>
+                <p>I will keep it cozy: good food, easy conversation, and no rush.</p>
               </div>
 
               <div className="promise-grid" aria-label="Date promises">
