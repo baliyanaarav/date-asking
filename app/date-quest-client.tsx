@@ -10,7 +10,6 @@ import {
   MessageCircleHeart,
   Music2,
   PartyPopper,
-  Send,
   Sparkles,
   Utensils,
 } from "lucide-react";
@@ -257,15 +256,13 @@ export default function DateQuest({ initialName }: { initialName: string }) {
               eyebrow="Final unlock"
               icon={MessageCircleHeart}
               title={finalTitle}
-              note="If you say yes, I will keep it easy and comfortable."
               onBack={() => setStep("date")}
             >
-              <div className="summary-strip">
-                <SummaryItem icon={Heart} label="Vibe" value={choiceTitle(moods, mood)} />
-                <SummaryItem icon={MapPin} label="Plan" value={choiceTitle(places, place)} />
-                <SummaryItem icon={CalendarDays} label="Date" value={formatDate(date)} />
-                <SummaryItem icon={Clock} label="Time" value={time} />
-              </div>
+              <p className="final-plan-line">
+                <Heart size={16} />
+                {choiceTitle(moods, mood)} - {choiceTitle(places, place)} - {formatDate(date)} -{" "}
+                {time}
+              </p>
 
               <div className="answer-arena" onPointerMove={moveNoButton}>
                 <span className="answer-spark">Only if it feels right</span>
@@ -289,55 +286,20 @@ export default function DateQuest({ initialName }: { initialName: string }) {
                 </button>
               </div>
 
-              <div className="pickup-note">
-                <MapPin size={18} />
-                <strong>I will pick you up, or we can meet wherever you feel comfortable.</strong>
-              </div>
-
-              <div className="final-love-note">
-                <Heart size={18} />
-                <p>I will keep it cozy: good food, easy conversation, and no rush.</p>
-              </div>
-
-              <div className="promise-grid" aria-label="Date promises">
-                <div>
-                  <Heart size={17} />
-                  <strong>Easy & comfy</strong>
-                  <span>No rush, no awkward pressure.</span>
-                </div>
-                <div>
-                  <Sparkles size={17} />
-                  <strong>I will plan it</strong>
-                  <span>Place, timing, and little details handled.</span>
-                </div>
-                <div>
-                  <Clock size={17} />
-                  <strong>On time</strong>
-                  <span>Quest rule: no making you wait.</span>
-                </div>
-              </div>
-
-              <div className="response-panel">
-                <p>{responseMessage}</p>
-                <div className="response-actions">
-                  <button className="secondary-button" onClick={celebrateYes}>
-                    <Send size={18} />
-                    Send to Aarav
-                  </button>
-                  <a
-                    className="secondary-button"
-                    href={whatsAppResponseUrl}
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    <MessageCircleHeart size={18} />
-                    WhatsApp Aarav
-                  </a>
-                  <button className="ghost-button" onClick={() => copyText(responseMessage)}>
-                    {copyState === "copied" ? <Check size={18} /> : <Copy size={18} />}
-                    {copyState === "copied" ? "Copied" : "Copy"}
-                  </button>
-                </div>
+              <div className="final-actions">
+                <a
+                  className="secondary-button"
+                  href={whatsAppResponseUrl}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <MessageCircleHeart size={18} />
+                  WhatsApp Aarav
+                </a>
+                <button className="ghost-button" onClick={() => copyText(responseMessage)}>
+                  {copyState === "copied" ? <Check size={18} /> : <Copy size={18} />}
+                  {copyState === "copied" ? "Copied" : "Copy"}
+                </button>
               </div>
             </QuestStep>
           ) : null}
@@ -446,24 +408,6 @@ function QuestStep({
           </button>
         ) : null}
       </div>
-    </div>
-  );
-}
-
-function SummaryItem({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: React.ComponentType<{ size?: number; strokeWidth?: number }>;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="summary-item">
-      <Icon size={18} />
-      <span>{label}</span>
-      <strong>{value}</strong>
     </div>
   );
 }
