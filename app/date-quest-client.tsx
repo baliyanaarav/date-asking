@@ -78,13 +78,6 @@ const places: Choice[] = [
 
 const timeSlots = ["5:30 PM", "6:30 PM", "7:30 PM", "8:30 PM"];
 
-const stepLabels: Record<StepId, string> = {
-  mood: "Vibe",
-  place: "Place",
-  date: "Plan",
-  answer: "Answer",
-};
-
 const steps: StepId[] = ["mood", "place", "date", "answer"];
 
 const noButtonSpots = [
@@ -128,7 +121,6 @@ export default function DateQuest({ initialName }: { initialName: string }) {
 
   const todayValue = useMemo(() => getTodayValue(), []);
   const currentIndex = steps.indexOf(step);
-  const heartCount = currentIndex + 1;
   const heroTitle = recipientName
     ? `${recipientName}, want to go on a date?`
     : "Want to go on a date?";
@@ -194,38 +186,6 @@ export default function DateQuest({ initialName }: { initialName: string }) {
           <p className="eyebrow">A tiny quest from {senderName}</p>
           <h1>{heroTitle}</h1>
           <p>Pick what feels cute. I will handle the plan.</p>
-          <div className="personal-note" aria-label="Personal note">
-            <Heart size={18} />
-            <span>
-              I made this little date quest just for you. Choose whatever feels
-              nice.
-            </span>
-          </div>
-          <div className="quest-hud" aria-label="Quest score">
-            <span>
-              <Sparkles size={15} />
-              Level {currentIndex + 1}/4
-            </span>
-            <span>
-              <Heart size={15} />
-              {heartCount} {heartCount === 1 ? "heart" : "hearts"}
-            </span>
-          </div>
-          <div className="progress-track" aria-label="Quest progress">
-            {steps.map((item, index) => (
-              <button
-                aria-current={item === step ? "step" : undefined}
-                className={index <= currentIndex ? "active" : ""}
-                key={item}
-                onClick={() => setStep(item)}
-              >
-                <span aria-hidden="true">
-                  {index <= currentIndex ? <Heart fill="currentColor" size={13} /> : index + 1}
-                </span>
-                {stepLabels[item]}
-              </button>
-            ))}
-          </div>
         </aside>
 
         <section className="quest-panel">

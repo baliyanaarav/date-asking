@@ -258,105 +258,6 @@ h1 {
   line-height: 1.5;
 }
 
-.personal-note {
-  display: flex;
-  max-width: 500px;
-  gap: 10px;
-  align-items: flex-start;
-  border: 1px solid var(--soft-line);
-  border-radius: 8px;
-  background:
-    linear-gradient(135deg, rgba(76, 34, 61, 0.52), rgba(33, 19, 35, 0.46)),
-    rgba(255, 255, 255, 0.04);
-  color: var(--muted);
-  margin-top: 16px;
-  padding: 12px;
-  line-height: 1.4;
-}
-
-.personal-note svg {
-  flex: 0 0 auto;
-  color: var(--rose);
-}
-
-.personal-note span {
-  font-size: 0.92rem;
-}
-
-.quest-hud {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.quest-hud span {
-  display: inline-flex;
-  min-height: 34px;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid rgba(244, 207, 138, 0.28);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.07);
-  color: var(--teal);
-  font-size: 0.78rem;
-  font-weight: 900;
-  padding: 0 11px;
-}
-
-.quest-hud svg {
-  color: var(--rose);
-}
-
-.progress-track {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 7px;
-  max-width: 460px;
-  margin-top: 14px;
-}
-
-.progress-track button {
-  display: inline-flex;
-  min-width: 0;
-  min-height: 42px;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  border: 1px solid var(--soft-line);
-  border-radius: 999px;
-  background:
-    linear-gradient(180deg, rgba(53, 29, 50, 0.56), rgba(31, 20, 34, 0.46)),
-    rgba(33, 19, 35, 0.42);
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 0.74rem;
-  font-weight: 800;
-  padding: 0 8px;
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-}
-
-.progress-track button span {
-  display: grid;
-  width: 22px;
-  height: 22px;
-  place-items: center;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--teal);
-}
-
-.progress-track button.active,
-.progress-track button[aria-current="step"] {
-  border-color: rgba(255, 95, 140, 0.56);
-  background:
-    linear-gradient(180deg, rgba(89, 39, 68, 0.88), rgba(48, 25, 45, 0.86)),
-    rgba(44, 24, 45, 0.92);
-  color: var(--ink);
-  box-shadow: 0 10px 20px rgba(255, 95, 140, 0.16);
-  transform: translateY(-1px);
-}
-
 .quest-panel,
 .creator-panel {
   width: 100%;
@@ -966,45 +867,12 @@ button:disabled {
     line-height: 1.45;
   }
 
-  .personal-note {
-    margin-top: 14px;
-    padding: 12px;
-  }
-
-  .personal-note span {
-    font-size: 0.9rem;
-  }
-
-  .quest-hud {
-    display: none;
-  }
-
   .quest-panel {
     padding: 16px;
   }
 
   .step-note {
     display: none;
-  }
-
-  .progress-track {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 6px;
-    margin-top: 14px;
-  }
-
-  .progress-track button {
-    min-height: 46px;
-    border-radius: 14px;
-    font-size: 0.7rem;
-    gap: 4px;
-    padding: 0 4px;
-  }
-
-  .progress-track button span {
-    width: 20px;
-    height: 20px;
-    margin: 0;
   }
 
   .quest-step {
